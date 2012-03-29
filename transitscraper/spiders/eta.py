@@ -2,6 +2,9 @@ from scrapy.spider import BaseSpider
 from transitscraper.spiders.eta_urls import URL_LIST
 from scrapy.selector import XmlXPathSelector
 from transitscraper.items import EtaScraperItem
+from transitmonitor.eta.models import DIRECTION_OPTS
+from time import time
+ 
 
 class EtaScraper(BaseSpider):
     name = "etascraper"
@@ -29,5 +32,14 @@ class EtaScraper(BaseSpider):
                 item['affected_by_layover'] = 'false'
             item['routename'] = routetitle
             item['stoptag'] = stoptag
+            item['created'] = time()
+            direction = item['dir_tag']
+            if direction.find(DIRECTION_OPTS[0][0]) == -1 and direction.find(DIRECTION_OPTS[1][0]) == -1:
+                direc = DIRECTION_OPTS[2][1]
+            elif direction.find(DIRECTION_OPTS[0][0]) != -1:
+                direc = DIRECTION_OPTS[0][1]
+            else:
+                direc = DIRECTION_OPTS[1][1]
+            item['dir_tag'] = direc
             items.append(item)
         return items

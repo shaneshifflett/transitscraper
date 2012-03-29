@@ -11,6 +11,9 @@ from datetime import date
 
 
 '''
+sudo apt-get update
+sudo apt-get install build-essential python2.7-dev python-pip
+sudo apt-get install binutils gdal-bin libproj-dev postgresql-9.1-postgis postgresql-server-dev-9.1 python-psycopg2
 scrapy crawl etascraper -o results/items-`date +"%d-%m-%Y-%s"`.csv -t csv
 '''
 

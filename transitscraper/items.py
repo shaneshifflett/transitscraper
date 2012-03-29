@@ -15,3 +15,4 @@ class EtaScraperItem(Item):
     affected_by_layover = Field()
     routename = Field()
     stoptag = Field()
+    created = Field()
