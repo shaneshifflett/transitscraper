@@ -13,3 +13,5 @@ class EtaScraperItem(Item):
     vehicle_id = Field()
     trip_tag = Field()
     affected_by_layover = Field()
+    routename = Field()
+    stoptag = Field()

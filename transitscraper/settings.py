@@ -9,6 +9,11 @@ import os
 from time import time
 from datetime import date
 
+
+'''
+scrapy crawl etascraper -o results/items-`date +"%d-%m-%Y-%s"`.csv -t csv
+'''
+
 BOT_NAME = 'transitscraper'
 BOT_VERSION = '1.0'
 
@@ -16,10 +21,14 @@ SPIDER_MODULES = ['transitscraper.spiders']
 NEWSPIDER_MODULE = 'transitscraper.spiders'
 USER_AGENT = '%s/%s' % (BOT_NAME, BOT_VERSION)
 
+ITEM_PIPELINES = [
+    'transitscraper.pipelines.ETAPipeline',
+]
+
 CONCURRENT_REQUESTS = 50
 
 medate = str(date.fromtimestamp(time()))
-#LOG_FILE='%s-log.out' % medate
+LOG_FILE='%s-log.out' % medate
 
 def setup_django_env(path):
     import imp, os
