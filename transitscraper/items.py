@@ -16,3 +16,4 @@ class EtaScraperItem(Item):
     routename = Field()
     stoptag = Field()
     created = Field()
+    thisdate = Field()

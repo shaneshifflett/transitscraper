@@ -4,7 +4,7 @@ from scrapy.selector import XmlXPathSelector
 from transitscraper.items import EtaScraperItem
 from transitmonitor.eta.models import DIRECTION_OPTS
 from time import time
- 
+from datetime import datetime 
 
 class EtaScraper(BaseSpider):
     name = "etascraper"
@@ -33,6 +33,7 @@ class EtaScraper(BaseSpider):
             item['routename'] = routetitle
             item['stoptag'] = stoptag
             item['created'] = time()
+            item['thisdate'] = datetime.now().date()
             direction = item['dir_tag']
             if direction.find(DIRECTION_OPTS[0][0]) == -1 and direction.find(DIRECTION_OPTS[1][0]) == -1:
                 direc = DIRECTION_OPTS[2][1]
