@@ -2,9 +2,14 @@ from scrapy.spider import BaseSpider
 from transitscraper.spiders.eta_urls import URL_LIST
 from scrapy.selector import XmlXPathSelector
 from transitscraper.items import EtaScraperItem
-from transitmonitor.eta.models import DIRECTION_OPTS
 from time import time
 from datetime import datetime 
+
+DIRECTION_OPTS = (
+    ('OB', 'OUTBOUND'),
+    ('IB','INBOUND'),
+    ('NA', "NA")
+)
 
 class EtaScraper(BaseSpider):
     name = "etascraper"
