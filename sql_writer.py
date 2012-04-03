@@ -53,7 +53,7 @@ def get_vehicle_id(cur, vehicleid):
             return None
 
 def get_stop_id(cur, stoptag, routeid):
-    get_stop = "SELECT id from eta_stop where route_id=%s and tag='%s'"
+    get_stop = "SELECT stop_id from eta_stop where route_id=%s and tag='%s'"
     try:
         cur.execute(get_stop % (routeid, stoptag))
         rows = cur.fetchall()
